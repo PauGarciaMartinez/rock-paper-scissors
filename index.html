@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <body>
+    <script>
+
+        // Computer select randomly Rock, Paper or Scissors and return the selected value
+        function computerPlay() {
+            let computerOptions = ["rock", "paper", "scissors"];
+            let computerRandomSelection = computerOptions[Math.floor(Math.random() * computerOptions.length)];
+            return computerRandomSelection
+        }
+        let computerSelection = computerPlay();
+
+        // User inputs Rock, Paper or Scissors and the selected value is stored into a variable
+        let playerSelection = prompt("Let's fight! Write 'Rock', 'Paper' or 'Scissors' to start the battle");
+            if (playerSelection == "" || null || undefined) {
+                alert("Please, introduce one of the three available weapons");
+                prompt("Let's fight! Write 'Rock', 'Paper' or 'Scissors' to start the battle");
+            }
+
+        // Compare the computer selection and the user selection to know who's the winner of the round
+        function playRound(playerSelection, computerSelection) {
+            
+            playerSelection = playerSelection.toLowerCase();
+
+            let win = "You win!";
+            let lose = "You lose...";
+            let tie = "It's a tie, try again!";
+
+            // Conditional statement to check who wins the round
+            if (playerSelection === "rock" && computerSelection === "paper") {
+                return lose + " paper beats rock";
+            } else if (playerSelection === "paper" && computerSelection === "scissors") {
+                return lose + " scissors cut paper";
+            } else if (playerSelection === "scissors" && computerSelection === "rock") {
+                return lose + " rock beats scissors";
+            } else if (playerSelection === "rock" && computerSelection === "scissors") {
+                return win + " Rock beats scissors";
+            } else if (playerSelection === "paper" && computerSelection === "rock") {
+                return win + " Paper beats rock";
+            } else if (playerSelection === "scissors" && computerSelection === "paper") {
+                return win + " Scissors cut paper";
+            } else if (playerSelection === "rock" && computerSelection === "rock") {
+                return tie;
+            } else if (playerSelection === "paper" && computerSelection === "paper") {
+                return tie;
+            } else if (playerSelection === "scissors" && computerSelection === "scissors") {
+                return tie;
+            }
+        }
+
+        // Outputs the result of the round
+        console.log(playRound(playerSelection, computerSelection));
+
+        // Play a five round game loop
+        function game() {
+            playRound()
+            playRound()
+        }
+
+        game()
+
+
+    </script>
+    </body>
+</html>
