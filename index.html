@@ -17,7 +17,10 @@
                 alert("Please, introduce one of the three available weapons");
                 prompt("Let's fight! Write 'Rock', 'Paper' or 'Scissors' to start the battle");
             }
-
+        
+        let playerScore = 0;
+        let computerScore = 0;
+        
         // Compare the computer selection and the user selection to know who's the winner of the round
         function playRound(playerSelection, computerSelection) {
             
@@ -29,16 +32,22 @@
 
             // Conditional statement to check who wins the round
             if (playerSelection === "rock" && computerSelection === "paper") {
+                computerScore++;
                 return lose + " paper beats rock";
             } else if (playerSelection === "paper" && computerSelection === "scissors") {
+                computerScore++;
                 return lose + " scissors cut paper";
             } else if (playerSelection === "scissors" && computerSelection === "rock") {
+                computerScore++;
                 return lose + " rock beats scissors";
             } else if (playerSelection === "rock" && computerSelection === "scissors") {
+                playerScore++;
                 return win + " Rock beats scissors";
             } else if (playerSelection === "paper" && computerSelection === "rock") {
+                playerScore++;
                 return win + " Paper beats rock";
             } else if (playerSelection === "scissors" && computerSelection === "paper") {
+                playerScore++;
                 return win + " Scissors cut paper";
             } else if (playerSelection === "rock" && computerSelection === "rock") {
                 return tie;
@@ -49,17 +58,26 @@
             }
         }
 
-        // Outputs the result of the round
-        console.log(playRound(playerSelection, computerSelection));
+        // Play a five round game
+       function game() {
 
-        // Play a five round game loop
-        function game() {
-            playRound()
-            playRound()
-        }
+           let round = 1;
 
-        game()
+           while (round <= 5) {
+           playerSelection = prompt("Let's fight! Write 'Rock', 'Paper' or 'Scissors' to start the battle");
+           console.log(playRound(playerSelection, computerSelection));
+           console.log("Score: Player " + playerScore + " - Computer " + computerScore);
+           round++;
+           }
 
+           if (playerScore > computerScore) {
+               console.log("You win the game!");
+           } else if (playerScore < computerScore) {
+               console.log("Oh, you lose the game");
+           }
+       }
+
+       console.log(game());
 
     </script>
     </body>
